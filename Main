@@ -1,0 +1,66 @@
+MAIN:
+
+package me.myplugin.broadcast;
+
+import java.util.logging.Logger;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
+import org.bukkit.plugin.java.JavaPlugin;
+
+public class Broadcaster extends JavaPlugin
+{
+  public static Bukkit plugin;
+  public final Logger logger = Logger.getLogger("Minecraft");
+
+  public void onEnable() {
+    getLogger().info(ChatColor.RED + "Anonymous-Broadcaster Version 1.0.0 Is Now Enabled");
+  }
+
+  public void onDisable() {
+    getLogger().info(ChatColor.RED + "Anonymous-Broadcaster Version 1.0.0 Is Now Disabled");
+  }
+
+  public boolean onCommand(CommandSender sender, Command command, String commandLable, String[] args)
+  {
+    if (command.getName().toLowerCase().equalsIgnoreCase("abc")) {
+      if (args.length < 1) {
+        return false;
+      }
+      if (!sender.hasPermission(new permissions().canPerformCommand))
+      {
+        sender.sendMessage(ChatColor.DARK_RED + "You do not have permissions for this command!");
+        return true;
+      }
+
+      String abc = "";
+      for (String str : args) {
+        abc = abc + str + " ";
+      }
+      Bukkit.broadcastMessage(ChatColor.RED + ChatColor.GREEN + 
+        ChatColor.RED + ChatColor.AQUA + 
+        ChatColor.translateAlternateColorCodes('&', abc));
+    }
+
+    if (command.getName().toLowerCase().equalsIgnoreCase("bc")) {
+      if (args.length < 1) {
+        return false;
+      }
+      if (!sender.hasPermission(new permissions2().canPerformCommand))
+      {
+        sender.sendMessage(ChatColor.DARK_RED + "You do not have permissions for this command!");
+        return true;
+      }
+
+      String abc = "";
+      for (String str : args) {
+        abc = abc + str + " ";
+      }
+      Bukkit.broadcastMessage(ChatColor.RED + "[" + ChatColor.GREEN + 
+        "Broadcast" + ChatColor.RED + "] " + ChatColor.AQUA + 
+        ChatColor.translateAlternateColorCodes('&', abc));
+    }
+    return false;
+  }
+}
