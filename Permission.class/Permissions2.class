@@ -1,0 +1,21 @@
+Permissions.class
+
+package me.myplugin.broadcast;
+
+import org.bukkit.permissions.Permission;
+
+public class permissions
+{
+  public Permission canPerformCommand = new Permission("broadcast.abc");
+}
+
+Permissions2.class
+
+package me.myplugin.broadcast;
+
+import org.bukkit.permissions.Permission;
+
+public class permissions2
+{
+  public Permission canPerformCommand = new Permission("broadcast.bc");
+}
